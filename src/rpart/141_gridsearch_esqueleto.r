@@ -98,6 +98,8 @@ dataset <- fread("./datasets/dataset_pequeno.csv")
 # trabajo solo con los datos con clase, es decir 202107
 dataset <- dataset[clase_ternaria != ""]
 
+setwd("~/grid_search/")
+
 # genero el archivo para Kaggle
 # creo la carpeta donde va el experimento
 # HT  representa  Hiperparameter Tuning
