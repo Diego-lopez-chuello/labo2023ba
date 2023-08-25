@@ -120,8 +120,8 @@ setwd("~/grid_search/")
 # creo la carpeta donde va el experimento
 # HT  representa  Hiperparameter Tuning
 dir.create("./exp/", showWarnings = FALSE)
-dir.create("./exp/HT2024/", showWarnings = FALSE)
-archivo_salida <- "./exp/HT2024/gridsearch.txt"
+dir.create("./exp/HT2025/", showWarnings = FALSE)
+archivo_salida <- "./exp/HT2025/gridsearch_bin_001.txt"
 
 # Escribo los titulos al archivo donde van a quedar los resultados
 # atencion que si ya existe el archivo, esta instruccion LO SOBREESCRIBE,
