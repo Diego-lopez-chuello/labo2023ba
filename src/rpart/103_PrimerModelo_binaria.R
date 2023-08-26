@@ -12,13 +12,20 @@ setwd("~/buckets/b1/") # Establezco el Working Directory
 # cargo el dataset
 dataset <- fread("./datasets/dataset_pequeno.csv")
 
+# modifico la columna clase_ternaria para que sea binaria
+
+setnames(dataset, old = "clase_ternaria", new = "clase_binaria")
+dataset[clase_binaria == "BAJA+1", clase_binaria := "neg"]
+dataset[clase_binaria == "CONTINUA", clase_binaria := "neg"]
+dataset[clase_binaria == "BAJA+2", clase_binaria := "pos"]
+
 dtrain <- dataset[foto_mes == 202107] # defino donde voy a entrenar
 dapply <- dataset[foto_mes == 202109] # defino donde voy a aplicar el modelo
 
 # genero el modelo,  aqui se construye el arbol
 # quiero predecir clase_ternaria a partir de el resto de las variables
 modelo <- rpart(
-        formula = "clase_ternaria ~ .",
+        formula = "clase_binaria ~ .",
         data = dtrain, # los datos donde voy a entrenar
         xval = 0,
         cp = -0.3, # esto significa no limitar la complejidad de los splits
@@ -42,12 +49,12 @@ prediccion <- predict(
         type = "prob"
 )
 
-# prediccion es una matriz con TRES columnas,
+# prediccion es una matriz con dos columnas,
 # llamadas "BAJA+1", "BAJA+2"  y "CONTINUA"
 # cada columna es el vector de probabilidades
 
 # agrego a dapply una columna nueva que es la probabilidad de BAJA+2
-dapply[, prob_baja2 := prediccion[, "BAJA+2"]]
+dapply[, prob_baja2 := prediccion[, "pos"]]
 
 # solo le envio estimulo a los registros
 #  con probabilidad de BAJA+2 mayor  a  1/40
@@ -56,10 +63,10 @@ dapply[, Predicted := as.numeric(prob_baja2 > 1 / 40)]
 # genero el archivo para Kaggle
 # primero creo la carpeta donde va el experimento
 dir.create("./exp/")
-dir.create("./exp/KA2001")
+dir.create("./exp/KA2003")
 
 # solo los campos para Kaggle
 fwrite(dapply[, list(numero_de_cliente, Predicted)],
-        file = "./exp/KA2001/K101_016.csv",
+        file = "./exp/KA2001/K103_001.csv",
         sep = ","
 )
