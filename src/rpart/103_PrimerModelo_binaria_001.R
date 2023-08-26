@@ -67,6 +67,6 @@ dir.create("./exp/KA2003")
 
 # solo los campos para Kaggle
 fwrite(dapply[, list(numero_de_cliente, Predicted)],
-        file = "./exp/KA2001/K103_001.csv",
+        file = "./exp/KA2003/K103_001.csv",
         sep = ","
 )
