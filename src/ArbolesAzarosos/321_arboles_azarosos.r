@@ -11,7 +11,7 @@ require("rpart")
 
 # parmatros experimento
 PARAM <- list()
-PARAM$experimento <- 3210
+PARAM$experimento <- 3210002
 
 # Establezco la semilla aleatoria, cambiar por SU primer semilla
 PARAM$semilla <- 100019
