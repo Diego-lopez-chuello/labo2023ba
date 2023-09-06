@@ -50,7 +50,7 @@ PARAM$hyperparametertuning$POS_ganancia <- 117000
 PARAM$hyperparametertuning$NEG_ganancia <- -3000
 
 # Aqui poner su segunda semilla
-PARAM$hyperparametertuning$semilla_azar <- 200177
+PARAM$hyperparametertuning$semilla_azar <- 100049
 #------------------------------------------------------------------------------
 
 # Aqui se cargan los bordes de los hiperparametros
