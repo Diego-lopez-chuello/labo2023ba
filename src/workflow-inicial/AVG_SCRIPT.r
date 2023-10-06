@@ -28,7 +28,7 @@ generar_csv_por_cantidad_registros <- function(data, cantidades) {
     data[, promedio_prob:=NULL]
     
     # Generar el nombre del archivo CSV
-    nombre_archivo <- paste("resultado_PRUEBA", cantidad, "_envios.csv", sep = "")
+    nombre_archivo <- paste("resultado_FINAL_03", cantidad, "_envios.csv", sep = "")
     
     # Escribir el data.table con etiquetas en un archivo CSV
     write.csv(data, nombre_archivo, row.names = FALSE)
@@ -38,7 +38,7 @@ generar_csv_por_cantidad_registros <- function(data, cantidades) {
 
 #Defino mi espacio de trabajo
 
-setwd("~/buckets/b1/exp/ZZ6610_EC_01_10")
+setwd("~/buckets/b1/exp/ZZ6610_FINAL_03")
 
 archivos_csv <- list.files(pattern = "^pred.*\\.csv$", full.names = TRUE)
 
